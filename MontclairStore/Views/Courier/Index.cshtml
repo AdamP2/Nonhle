@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MontclairStore.Logic.Courier>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CourierName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourierEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isActive)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourierName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourierEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isActive)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CourierId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CourierId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CourierId })
+        </td>
+    </tr>
+}
+
+</table>

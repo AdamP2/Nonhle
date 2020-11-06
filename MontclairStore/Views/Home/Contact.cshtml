@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+
+<address>
+    185  Musgrave Rd, Musgrave,<br />
+    Durban,  4001<br />
+    <abbr title="Phone">Phone number:</abbr>
+    27-633523120
+</address>
+
+<address>
+    <strong>Support:</strong>   <a href="mailto:FreshlyBakedBakery@yahoo.co.za">FreshlyBakedBakery@yahoo.co.za</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Nozippho22@hotmail.com"> Nozippho22@hotmail.com</a>
+</address>
+
+
+<div class="row">
+    <div class="col-md-12">
+
+        <p>
+            Our location is based on musgrave centre durban,south africa
+        </p>
+
+        <div>
+            <div>
+                Travel From : <input id="travelfrom" type="text" name="name" value="Pietermaritzburg,South Africa" />
+                To : <input id="travelto" type="text" name="name" value="Musgrave Durban, South Africa" />
+                <input type="button" value="Get Route" onclick="" />
+
+            </div>
+            <br />
+            <div>
+                <div id="dvDistance">
+                </div>
+            </div>
+
+        </div>
+
+        <div id="dvMap" style="min-height:500px"></div>
+
+    </div>
+</div>
+
+@section scripts{
+
+    <!--ENSURE YOU CHANGE TO YOUR OWN API KEY HERE !!! -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDS-ue65Jx_HySaXRqnMehRbg67cMCL_xM&libraries=places&callback=initAutocomplete"></script>
+
+    <!-- code for example 1 -->
+    <script>
+
+
+        var source, destination;
+        var directionsDisplay;
+        var directionsService = new google.maps.DirectionsService();
+
+        // initialise the location of the map on Chichester in England (ref lat and lng)
+        var map = new google.maps.Map(document.getElementById('dvMap'), {
+            center: { lat: -29.8579000, lng: 31.0292000 },
+            zoom: 13,
+            mapTypeId: 'roadmap'
+        });
+
+        google.maps.event.addDomListener(window, 'load', function () {
+            new google.maps.places.SearchBox(document.getElementById('travelfrom'));
+            new google.maps.places.SearchBox(document.getElementById('travelto'));
+            directionsDisplay = new google.maps.DirectionsRenderer({ 'draggable': true });
+        });
+
+        function GetRoute() {
+
+            directionsDisplay.setMap(map);
+
+            source = document.getElementById("travelfrom").value;
+            destination = document.getElementById("travelto").value;
+
+            var request = {
+                origin: source,
+                destination: destination,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+
+            directionsService.route(request, function (response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                }
+            });
+
+            //*********DISTANCE AND DURATION**********************//
+            var service = new google.maps.DistanceMatrixService();
+            service.getDistanceMatrix({
+                origins: [source],
+                destinations: [destination],
+                travelMode: google.maps.TravelMode.DRIVING,
+                unitSystem: google.maps.UnitSystem.METRIC,
+                avoidHighways: false,
+                avoidTolls: false
+            }, function (response, status) {
+
+                if (status == google.maps.DistanceMatrixStatus.OK && response.rows[0].elements[0].status != "ZERO_RESULTS") {
+                    var distance = response.rows[0].elements[0].distance.text;
+                    var duration = response.rows[0].elements[0].duration.value;
+                    var dvDistance = document.getElementById("dvDistance");
+                    duration = parseFloat(duration / 60).toFixed(2);
+                    dvDistance.innerHTML = "";
+                    dvDistance.innerHTML += "Distance: " + distance + "<br />";
+                    dvDistance.innerHTML += "Time:" + duration + " min";
+
+                } else {
+                    alert("Unable to find the distance via road.");
+                }
+            });
+        }
+
+    </script>
+    <!-- end code for example 1 -->
+}
+<br />
+<br />
+<td>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-default"><i class="fa fa-arrow-left"></i> Back to Home</a>
+</td>

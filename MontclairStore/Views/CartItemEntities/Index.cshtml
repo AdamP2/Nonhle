@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MontclairModels.CartItemEntity>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cart.cart_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.colour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.shape)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flavour)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cart.cart_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.colour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.shape)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.size)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flavour)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.cart_item_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.cart_item_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.cart_item_id })
+        </td>
+    </tr>
+}
+
+</table>
