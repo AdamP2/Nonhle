@@ -611,7 +611,6 @@
     <Content Include="Content\Template\fonts\roboto\Roboto-Medium.ttf" />
     <Content Include="Content\Template\fonts\roboto\Roboto-Regular.ttf" />
     <Content Include="Content\Template\fonts\roboto\Roboto-Thin.ttf" />
-    <Content Include="Content\Template\images\Thumbs.db" />
     <Content Include="Content\Template\plugins\slickslider\fonts\slick.eot" />
     <Content Include="Content\Template\plugins\slickslider\fonts\slick.ttf" />
     <Content Include="Content\Template\plugins\slickslider\fonts\slick.woff" />
@@ -772,7 +771,6 @@
     <Content Include="Content\Home\fonts\roboto\Roboto-Medium.ttf" />
     <Content Include="Content\Home\fonts\roboto\Roboto-Regular.ttf" />
     <Content Include="Content\Home\fonts\roboto\Roboto-Thin.ttf" />
-    <Content Include="Content\Home\images\Thumbs.db" />
     <Content Include="Content\Home\plugins\slickslider\fonts\slick.eot" />
     <Content Include="Content\Home\plugins\slickslider\fonts\slick.ttf" />
     <Content Include="Content\Home\plugins\slickslider\fonts\slick.woff" />
